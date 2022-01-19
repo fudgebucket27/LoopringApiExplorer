@@ -13,8 +13,14 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1",
         new OpenApiInfo
         {
-            Title = "Loopring API Explorer - V1",
-            Version = "v1"
+            Version = "v1",
+            Title = "LoopringSharp API Explorer - V1",
+            Description = "This is an API explorer for Loopring built using LoopringSharp",
+            Contact = new OpenApiContact
+            {
+                Name = "LoopringSharp",
+                Url = new Uri("https://github.com/taranasus/LoopringSharp")                
+            }            
         }
      );
     var filePath = Path.Combine(System.AppContext.BaseDirectory, "LoopringApiExplorer.xml");
