@@ -10,10 +10,10 @@ namespace LoopringApiExplorer.Controllers
     public class BlockController : ControllerBase
     {
         /// <summary>
-        /// Retrieves the layer 2 block by
+        /// Retrieves the layer 2 block by it's corresponding block id
         /// </summary>
-        /// <remarks>Awesomeness!</remarks>
-        /// <param name="id" example="1">The product id</param>
+        /// <param name="apiKey" example="">Your API key from Loopring</param>
+        /// <param name="id" example="1">The layer 2 block id</param>
         [HttpPost(Name = "GetL2BlockInfo")]
         public L2BlockInfo Get([RequiredAttribute]string apiKey,[RequiredAttribute] int id)
         {
