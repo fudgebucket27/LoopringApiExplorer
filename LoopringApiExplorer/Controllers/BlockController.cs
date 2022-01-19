@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LoopringApiExplorer.Controllers
 {
-    [ApiController]
     [Route("api/[controller]/[action]")]
+    [ApiController]
     public class BlockController : ControllerBase
     {
         /// <summary>
