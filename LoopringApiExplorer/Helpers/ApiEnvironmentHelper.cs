@@ -5,7 +5,6 @@ namespace LoopringApiExplorer
 {
     public static class ApiEnvironmentHelper
     {
-        [JsonConverter(typeof(StringEnumConverter))]
         public enum ApiEnvironment
         {
             PRODUCTION,
