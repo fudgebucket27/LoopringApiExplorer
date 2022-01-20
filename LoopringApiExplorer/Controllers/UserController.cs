@@ -67,7 +67,7 @@ namespace LoopringApiExplorer.Controllers
         }
 
         /// <summary>
-        /// Get the details of an order based on order hash.
+        /// Returns user's Ether and token balances on exchange.
         /// </summary>
         /// <param name="apiEnvironment" example="UAT">The Loopring environment</param>
         /// <param name="apiKey">Your Loopring API Key</param>
