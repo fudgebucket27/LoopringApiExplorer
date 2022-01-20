@@ -13,7 +13,7 @@ namespace LoopringApiExplorer.Controllers
         /// Retrieves the relayer's current time in milleseconds.
         /// </summary>
         /// <param name="apiEnvironment" example="UAT">The Loopring environment</param>
-        [HttpGet(Name = "GetRelayerTimestamp")]
+        [HttpGet(Name = "RelayerTimestamp")]
         public long GetRelayerTimestamp([RequiredAttribute] ApiEnvironmentHelper.ApiEnvironment apiEnvironment)
         {
             string apiUrl = ApiEnvironmentHelper.GetApiEnvironment(apiEnvironment);
