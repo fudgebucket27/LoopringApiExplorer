@@ -75,7 +75,7 @@ namespace LoopringApiExplorer.Controllers
         /// <param name="tokens">List of the tokens which you want returned</param>
         /// <returns>OrderDetails object filled with awesome order details</returns>
         [HttpPost(Name = "Balances")]
-        public List<Balance> GetBalances([RequiredAttribute] ApiEnvironmentHelper.ApiEnvironment apiEnvironment, string apiKey, [RequiredAttribute] int accountId, string? tokens = null)
+        public List<Balance> GetBalances([RequiredAttribute] ApiEnvironmentHelper.ApiEnvironment apiEnvironment,[RequiredAttribute] string apiKey, [RequiredAttribute] int accountId, string? tokens = null)
         {
             string apiUrl = ApiEnvironmentHelper.GetApiEnvironment(apiEnvironment);
             SecureClient secureClient = new SecureClient(apiUrl);
