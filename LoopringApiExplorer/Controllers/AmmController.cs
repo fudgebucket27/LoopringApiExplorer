@@ -16,7 +16,7 @@ namespace LoopringApiExplorer.Controllers
         /// <param name="ammPoolAddress" example="0x049a02fa9bc6bd54a2937e67d174cc69a9194f8e">The AMM pool address</param>
         /// <param name="limit" example="50">The number of trades to return</param>
         /// <param name="offset" example="0">The number of trades to skip</param>
-        [HttpGet(Name = "GetAmmPoolTrades")]
+        [HttpGet(Name = "AmmPoolTrades")]
         public  AmmPoolTrades GetAmmPoolTrades([RequiredAttribute] ApiEnvironmentHelper.ApiEnvironment apiEnvironment, [RequiredAttribute] string ammPoolAddress, [RequiredAttribute] int limit, [RequiredAttribute] int offset)
         {
             string apiUrl = ApiEnvironmentHelper.GetApiEnvironment(apiEnvironment);
@@ -37,7 +37,7 @@ namespace LoopringApiExplorer.Controllers
         /// <param name="txTypes">Transaction type to filter on</param>
         /// <param name="txStatus">Transaction status to filter on</param>
         /// <param name="ammPoolAddress">The address of the AMM pool</param>
-        [HttpPost(Name = "GetAmmJoinExitTransactions")]
+        [HttpPost(Name = "AmmJoinExitTransactions")]
         public  AmmJoinExitTransactions GetAmmJoinExitTransactions([RequiredAttribute] ApiEnvironmentHelper.ApiEnvironment apiEnvironment, [RequiredAttribute] string apiKey, [RequiredAttribute] int accountId, long? start = 0, long? end = 0, int limit = 50, int offset = 0, string? txTypes = null, string? txStatus = null, string? ammPoolAddress = null)
         {
             string apiUrl = ApiEnvironmentHelper.GetApiEnvironment(apiEnvironment);

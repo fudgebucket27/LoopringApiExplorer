@@ -73,9 +73,8 @@ namespace LoopringApiExplorer.Controllers
         /// <param name="apiKey">Your Loopring API Key</param>
         /// <param name="accountId" example="11087">Loopring account identifier</param>
         /// <param name="tokens">List of the tokens which you want returned</param>
-        /// <returns>OrderDetails object filled with awesome order details</returns>
         [HttpPost(Name = "Balances")]
-        public List<Balance> GetBalances([RequiredAttribute] ApiEnvironmentHelper.ApiEnvironment apiEnvironment,[RequiredAttribute] string apiKey, [RequiredAttribute] int accountId, string? tokens = null)
+        public List<Balance> GetBalances([RequiredAttribute] ApiEnvironmentHelper.ApiEnvironment apiEnvironment, [RequiredAttribute] string apiKey, [RequiredAttribute] int accountId, string? tokens = null)
         {
             string apiUrl = ApiEnvironmentHelper.GetApiEnvironment(apiEnvironment);
             SecureClient secureClient = new SecureClient(apiUrl);
@@ -91,11 +90,10 @@ namespace LoopringApiExplorer.Controllers
         /// <param name="limit">Number of records to return</param>
         /// <param name="start">Start time in milliseconds - Default : 0L</param>
         /// <param name="end">End time in milliseconds - Default : 0L</param>
-        /// <param name="statuses" example='["processing","processed","cancelling","cancelled","expired","failed"]'>Comma separated status values</param>
+        /// <param name="statuses" example='["processing","processed","cancelling","cancelled","expired","failed"]'>Status of order, comma separated status values</param>
         /// <param name="tokenSymbol">Token to filter. If you want to return deposit records for all tokens, omit this parameter</param>
         /// <param name="offset">Number of records to skip - Default : 0L</param>
         /// <param name="hashes" example='[""]'>The hashes of the transactions, normally its L2 tx hash, except the deposit which uses L1 tx hash.</param>
-        /// <returns>A list of deposit transactions. Are you paying attention?</returns>
         [HttpPost(Name = "Deposits")]
         public List<ApiDepositTransaction> GetDeposits([RequiredAttribute] ApiEnvironmentHelper.ApiEnvironment apiEnvironment, [RequiredAttribute] string apiKey, [RequiredAttribute] int accountId, int? limit = 50, long? start = 0, long? end = 0, [FromQuery] List<OrderStatus>? statuses = null, string? tokenSymbol = null, int? offset = 0, string[]? hashes = null)
         {
@@ -104,5 +102,26 @@ namespace LoopringApiExplorer.Controllers
             return secureClient.GetDeposits(apiKey, accountId, limit.Value, start.Value, end.Value, statuses, tokenSymbol, offset.Value, hashes);
         }
 
+        /// <summary>
+        /// Get user onchain withdrawal history.
+        /// </summary>
+        /// <param name="apiEnvironment" example="UAT">The Loopring environment</param>
+        /// <param name="apiKey">Your Loopring ApiKey</param>
+        /// <param name="accountId" example="11087">Account ID, some hash query APIs doesnt need it if in hash query mode, check require flag of each API to see if its a must.</param>
+        /// <param name="limit">Number of records to return</param>
+        /// <param name="start">Start time in milliseconds - Default : 0L</param>
+        /// <param name="end">End time in milliseconds - Default : 0L</param>
+        /// <param name="statuses" example='["processing","processed","cancelling","cancelled","expired","failed"]'>Status of order, Comma separated status values</param>
+        /// <param name="tokenSymbol">Token to filter. If you want to return deposit records for all tokens, omit this parameter</param>
+        /// <param name="offset">Number of records to skip - Default : 0L</param>
+        /// <param name="withdrawlTypes">The type of withdrawls you want returned</param>   
+        /// <param name="hashes" example='[""]'>The hashes of the transactions, normally its L2 tx hash, except the deposit which uses L1 tx hash.</param>
+        [HttpPost(Name = "Withdrawals")]
+        public List<ApiWithdrawlTransaction> GetWithdrawals([RequiredAttribute] ApiEnvironmentHelper.ApiEnvironment apiEnvironment, [RequiredAttribute] string apiKey, [RequiredAttribute] int accountId, int? limit = 50, long? start = 0, long? end = 0, [FromQuery] List<OrderStatus>? statuses = null, string? tokenSymbol = null, int? offset = 0, WithdrawalTypes? withdrawlTypes = null, string[]? hashes = null)
+        {
+            string apiUrl = ApiEnvironmentHelper.GetApiEnvironment(apiEnvironment);
+            SecureClient secureClient = new SecureClient(apiUrl);
+            return secureClient.GetWithdrawls(apiKey, accountId, limit.Value, start.Value, end.Value, statuses, tokenSymbol, offset.Value, withdrawlTypes, hashes);
+        }
     }
 }
