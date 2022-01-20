@@ -27,7 +27,6 @@ builder.Services.AddSwaggerGen(c =>
     var filePath = Path.Combine(System.AppContext.BaseDirectory, "LoopringApiExplorer.xml");
     c.IncludeXmlComments(filePath);
 });
-//builder.Services.AddSwaggerGenNewtonsoftSupport();
 
 
 var app = builder.Build();
