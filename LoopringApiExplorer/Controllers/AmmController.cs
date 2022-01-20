@@ -25,7 +25,7 @@ namespace LoopringApiExplorer.Controllers
         }
 
         /// <summary>
-        /// Retrieves the AMM pool trade transactions
+        /// Retrieves the users AMM join exit transactions
         /// </summary>
         /// <param name="apiEnvironment" example="UAT">The Loopring environment</param>
         /// <param name="apiKey" example="">Your API key from Loopring</param>

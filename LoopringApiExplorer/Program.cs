@@ -1,11 +1,12 @@
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddControllers().AddJsonOptions(options => { options.JsonSerializerOptions.PropertyNamingPolicy = null; options.JsonSerializerOptions.PropertyNameCaseInsensitive = false; });
+builder.Services.AddControllers().AddJsonOptions(options => { options.JsonSerializerOptions.PropertyNamingPolicy = null; options.JsonSerializerOptions.PropertyNameCaseInsensitive = false; options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -19,14 +20,14 @@ builder.Services.AddSwaggerGen(c =>
             Contact = new OpenApiContact
             {
                 Name = "LoopringSharp",
-                Url = new Uri("https://github.com/taranasus/LoopringSharp")                
+                Url = new Uri("https://github.com/taranasus/LoopringSharp")
             }            
         }
      );
     var filePath = Path.Combine(System.AppContext.BaseDirectory, "LoopringApiExplorer.xml");
     c.IncludeXmlComments(filePath);
 });
-builder.Services.AddSwaggerGenNewtonsoftSupport();
+//builder.Services.AddSwaggerGenNewtonsoftSupport();
 
 
 var app = builder.Build();
