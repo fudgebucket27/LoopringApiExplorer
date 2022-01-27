@@ -44,5 +44,32 @@ namespace LoopringApiExplorer.Controllers
             SecureClient secureClient = new SecureClient(apiUrl);
             return secureClient.GetAmmJoinExitTransactions(apiKey, accountId, start.Value, end.Value, limit, offset, txTypes, txStatus, ammPoolAddress);
         }
+
+        /// <summary>
+        /// Retrieves the configured AMM pools
+        /// </summary>
+        /// <param name="apiEnvironment" example="UAT">The Loopring environment</param>
+        /// <param name="apiKey" example="">Your API key from Loopring</param>
+        [HttpPost(Name ="AmmPoolConfiguration")]
+        public AmmPoolConfiguration GetAmmPoolConfigurations([RequiredAttribute] ApiEnvironmentHelper.ApiEnvironment apiEnvironment, [RequiredAttribute] string apiKey)
+        {
+            string apiUrl = ApiEnvironmentHelper.GetApiEnvironment(apiEnvironment);
+            SecureClient secureClient = new SecureClient(apiUrl);
+            return secureClient.GetAmmPools(apiKey);
+        }
+
+        /// <summary>
+        /// Returns a snapshot of the specific AMM pool
+        /// </summary>
+        /// <param name="apiEnvironment" example="UAT">The Loopring environment</param>
+        /// <param name="apiKey" example="">Your API key from Loopring</param>
+        /// <param name="ammPoolAddress" example = "0xfEB069407df0e1e4B365C10992F1bc16c078E34b">The address of the AMM pool</param>
+        [HttpPost(Name = "AmmPoolBalance")]
+        public AmmPoolBalance GetAmmPoolBalance([RequiredAttribute] ApiEnvironmentHelper.ApiEnvironment apiEnvironment, [RequiredAttribute] string apiKey, [RequiredAttribute] string ammPoolAddress)
+        {
+            string apiUrl = ApiEnvironmentHelper.GetApiEnvironment(apiEnvironment);
+            SecureClient secureClient = new SecureClient(apiUrl);
+            return secureClient.GetAmmPoolBalance(apiKey, ammPoolAddress);
+        }
     }
 }
